@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzs.dao.UserDAO">
+    <resultMap id="userMap" type="user">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="birthday" column="birthday"/>
+        <result property="sex" column="sex"/>
+        <result property="address" column="address"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="userMap">
+        select * from user
+    </select>
+
+    <select id="findById" resultMap="userMap" parameterType="int">
+        select * from user where id = #{id}
+    </select>
+
+    <insert id="save" parameterType="user">
+        insert into user (username, birthday, sex, address) values (#{username}, #{birthday}, #{sex}, #{address})
+    </insert>
+
+    <select id="findAllMap" resultType="map">
+        select * from user
+    </select>
+</mapper>
